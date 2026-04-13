@@ -1,10 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Professional CV</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Portfolio</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --accent: #2563eb; /* Professional Blue */
+            --secondary: #64748b;
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 0; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* Header/Hero Section */
+        header { text-align: center; padding: 60px 0; }
+        h1 { font-size: 3rem; margin-bottom: 10px; letter-spacing: -1px; }
+        .tagline { color: var(--secondary); font-size: 1.2rem; margin-top: 0; }
+        
+        /* Section Styling */
+        section { margin-bottom: 50px; }
+        h2 { border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 5px; margin-bottom: 20px; }
+        
+        /* Showcase Grid */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .card { border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .card h3 { margin-top: 0; color: var(--accent); }
+
+        /* Footer */
+        footer { text-align: center; font-size: 0.9rem; color: var(--secondary); margin-top: 100px; }
+        a { color: var(--accent); text-decoration: none; font-weight: bold; }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Personal Portfolio</h1>
-    <p>This site is under construction. Check back soon!</p>
+
+<div class="container">
+    <header>
+        <h1>Your Name</h1>
+        <p class="tagline">Aspiring [Your Profession] | Problem Solver | Tech Enthusiast</p>
+        <div class="social-links">
+            <a href="https://linkedin.com/in/yourprofile">LinkedIn</a> • 
+            <a href="https://github.com/yourusername">GitHub</a> • 
+            <a href="mailto:your@email.com">Email</a>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Write a brief, punchy intro here. Talk about what drives you, the tools you love using, and what you're currently learning. Keep it professional but let your personality show through!</p>
+    </section>
+
+    <section id="projects">
+        <h2>Showcase Projects</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Project One</h3>
+                <p>A brief description of what you built and the impact it had. Mention the tech used (e.g., Python, React, SQL).</p>
+                <a href="#">View Project →</a>
+            </div>
+            <div class="card">
+                <h3>Project Two</h3>
+                <p>Another impressive piece of work. Focus on the "Why" and the "How" of this project.</p>
+                <a href="#">View Source →</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Core Skills</h2>
+        <p><strong>Technical:</strong> JavaScript, Python, Git, Project Management</p>
+        <p><strong>Soft Skills:</strong> Critical Thinking, Communication, Leadership</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Your Name. Built with GitHub Pages.</p>
+    </footer>
+</div>
+
 </body>
 </html>
