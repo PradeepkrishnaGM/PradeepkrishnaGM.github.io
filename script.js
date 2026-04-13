@@ -20,7 +20,7 @@ function printLine() {
     if (lineIndex < bootText.length) {
         bootContainer.innerHTML += bootText[lineIndex] + "<br>";
         lineIndex++;
-        setTimeout(printLine, Math.random() * 150 + 50); // Sped up for better UX
+        setTimeout(printLine, Math.random() * 150 + 50); 
     } else {
         setTimeout(() => {
             bootContainer.style.display = 'none';
@@ -56,7 +56,7 @@ function initTerminalScroll() {
                 const el = entry.target;
                 observer.unobserve(el); 
                 el.classList.add('is-visible');
-                typeHTML(el, 5); // Speed: ~5ms per character for snappy reading
+                typeHTML(el, 5); // Speed: ~5ms per character
             }
         });
     }, {
@@ -104,18 +104,16 @@ function typeHTML(element, speed) {
     type();
 }
 
-// Session Storage Logic: Decides whether to show the boot screen
+// Session Storage Logic
 window.onload = function() {
     const hasBooted = sessionStorage.getItem('systemBooted');
     const bootContainer = document.getElementById('boot-sequence');
     const mainContent = document.getElementById('main-content');
 
     if (bootContainer && !hasBooted) {
-        // First time visiting the site (only runs on index.html)
         printLine();
         sessionStorage.setItem('systemBooted', 'true'); 
     } else {
-        // Already visited, or on a subpage without a boot container
         if (bootContainer) bootContainer.style.display = 'none';
         if (mainContent) {
             mainContent.style.display = 'block';
