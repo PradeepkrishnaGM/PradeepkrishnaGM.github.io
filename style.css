@@ -1,0 +1,141 @@
+:root {
+    --term-green: #0f3;
+    --term-dark: #001100;
+    --term-glow: 0 0 10px #0f3, 0 0 2px #0f3;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    background-color: #000;
+    color: var(--term-green);
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 20px;
+    overflow-x: hidden;
+    text-shadow: var(--term-glow);
+}
+
+/* CRT Scanline Effect */
+.scanlines {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
+    z-index: 100;
+    animation: crt-flicker 0.15s infinite;
+}
+
+@keyframes crt-flicker {
+    0% { opacity: 0.95; }
+    50% { opacity: 0.85; }
+    100% { opacity: 0.95; }
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Navigation Menu */
+.terminal-nav {
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--term-green);
+    padding-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.terminal-nav a { 
+    margin-right: 15px; 
+    border-bottom: none;
+}
+
+/* Glitch and Blinking Cursor */
+.cursor::after {
+    content: '█';
+    animation: blink 1s step-end infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* Typography & Layout */
+h1, h2, h3 { margin: 10px 0; font-weight: normal; }
+h1 { font-size: 2.5rem; border-bottom: 2px solid var(--term-green); padding-bottom: 5px; margin-top: 0; }
+h2 { font-size: 1.8rem; margin-top: 30px; color: #fff; text-shadow: 0 0 5px #fff; }
+
+.section-box {
+    border: 1px solid var(--term-green);
+    padding: 15px;
+    margin-bottom: 20px;
+    background: rgba(0, 255, 0, 0.05);
+    transition: all 0.4s ease-out;
+    position: relative;
+}
+
+.section-box.is-visible:hover {
+    transform: translateX(10px);
+    border-left: 5px solid var(--term-green);
+    box-shadow: inset 0 0 15px rgba(0, 255, 0, 0.1), 0 0 15px rgba(0, 255, 0, 0.3);
+    background: rgba(0, 255, 0, 0.12);
+}
+
+.data-label { color: #88ff88; display: inline-block; width: 150px; }
+
+a { color: var(--term-green); text-decoration: none; border-bottom: 1px dashed var(--term-green); }
+a:hover { background: var(--term-green); color: #000; }
+
+/* Call to Action Button */
+.cta-button {
+    display: inline-block;
+    background: var(--term-green);
+    color: #000;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    text-shadow: none;
+    margin-top: 15px;
+}
+.cta-button:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 15px #fff;
+}
+
+/* Hide content initially for boot sequence */
+#main-content { display: none; }
+#boot-sequence { white-space: pre-wrap; margin-bottom: 20px; font-size: 1.5rem; }
+
+.ascii-art { font-size: 0.8rem; line-height: 1; white-space: pre; margin-bottom: 20px; }
+
+/* Typing Effect Cursor */
+.typing-cursor-inline {
+    display: inline-block;
+    width: 10px;
+    height: 1.2em;
+    background-color: var(--term-green);
+    vertical-align: bottom;
+    animation: blink 1s step-end infinite;
+    margin-left: 4px;
+}
+
+/* Custom Slide & Fade Animations */
+.slide-hidden { opacity: 0; }
+.slide-up { transform: translateY(30px); }
+.slide-right { transform: translateX(-30px); }
+.slide-down { transform: translateY(-30px); }
+.zoom-in { transform: scale(0.9); }
+
+.slide-up, .slide-right, .slide-down, .zoom-in {
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.is-visible.slide-up, .is-visible.slide-right, .is-visible.slide-down, .is-visible.zoom-in {
+    opacity: 1 !important;
+    transform: translate(0) scale(1) !important;
+}
