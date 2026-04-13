@@ -3,184 +3,367 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | MSc. Computer Simulation in Science</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- SEO OPTIMIZATION -->
+    <title>TERMINAL // [Your Name] - Computational Engineer</title>
+    <meta name="description" content="Official portfolio and executive bio of [Your Name], MSc. Computer Simulation in Science. Specializing in CFD, C++, and Parallel Computing. Available for employment.">
+    <meta name="keywords" content="CFD, Computational Fluid Dynamics, C++, MPI, OpenMP, Mechanical Engineering, Simulation, Portfolio">
+    <meta name="author" content="[Your Name]">
 
+    <!-- Terminal Font -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #00d2ff; /* Sci-fi Blue */
-            --secondary: #9d50bb; /* Deep Purple */
-            --bg: #0b0e14;
-            --card-bg: #161b22;
-            --text: #e6edf3;
+            --term-green: #0f3;
+            --term-dark: #001100;
+            --term-glow: 0 0 10px #0f3, 0 0 2px #0f3;
         }
 
-        * { box-sizing: border-box; scroll-behavior: smooth; }
-        body { 
-            background-color: var(--bg); 
-            color: var(--text); 
-            font-family: 'Inter', sans-serif; 
-            margin: 0; 
-            overflow-x: hidden;
-        }
+        * { box-sizing: border-box; }
 
-        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; color: var(--primary); }
-
-        /* Background Gradient Animation */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(circle at center, #1a2332 0%, #0b0e14 100%);
-            text-align: center;
+        body {
+            background-color: #000;
+            color: var(--term-green);
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            margin: 0;
             padding: 20px;
+            overflow-x: hidden;
+            text-shadow: var(--term-glow);
         }
 
-        .hero h1 { font-size: 4rem; margin: 0; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { font-size: 1.5rem; color: #8b949e; max-width: 700px; }
+        /* CRT Scanline Effect */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            z-index: 100;
+            animation: crt-flicker 0.15s infinite;
+        }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
+        @keyframes crt-flicker {
+            0% { opacity: 0.95; }
+            50% { opacity: 0.85; }
+            100% { opacity: 0.95; }
+        }
 
-        /* Section Styling */
-        section { margin-bottom: 100px; }
-        .section-title { font-size: 2.5rem; border-left: 5px solid var(--primary); padding-left: 20px; margin-bottom: 40px; }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
 
-        /* Timeline / Experience */
-        .timeline-item {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 12px;
-            border-left: 4px solid var(--secondary);
+        /* Glitch and Blinking Cursor */
+        .cursor::after {
+            content: '█';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Typography & Layout */
+        h1, h2, h3 { margin: 10px 0; font-weight: normal; }
+        h1 { font-size: 2.5rem; border-bottom: 2px solid var(--term-green); padding-bottom: 5px; }
+        h2 { font-size: 1.8rem; margin-top: 30px; color: #fff; text-shadow: 0 0 5px #fff; }
+        
+        .section-box {
+            border: 1px solid var(--term-green);
+            padding: 15px;
             margin-bottom: 20px;
-            transition: 0.3s;
+            background: rgba(0, 255, 0, 0.05);
+            transition: all 0.4s ease-out; /* Unified transition for hover and slide */
+            position: relative;
         }
-        .timeline-item:hover { transform: scale(1.02); background: #1c2128; }
-        .date { color: var(--primary); font-weight: bold; font-size: 0.9rem; }
 
-        /* Slideshow Container */
-        .swiper { width: 100%; height: 400px; border-radius: 15px; }
-        .swiper-slide {
-            background: var(--card-bg);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-            text-align: center;
-            border: 1px solid #30363d;
+        .section-box.is-visible:hover {
+            transform: translateX(10px);
+            border-left: 5px solid var(--term-green);
+            box-shadow: inset 0 0 15px rgba(0, 255, 0, 0.1), 0 0 15px rgba(0, 255, 0, 0.3);
+            background: rgba(0, 255, 0, 0.12);
         }
-        .swiper-slide h3 { margin-top: 0; }
 
-        /* Skills Grid */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .skill-tag { background: #21262d; padding: 10px 20px; border-radius: 50px; text-align: center; border: 1px solid #30363d; font-weight: 600; }
+        .data-label { color: #88ff88; display: inline-block; width: 150px; }
+        
+        a { color: var(--term-green); text-decoration: none; border-bottom: 1px dashed var(--term-green); }
+        a:hover { background: var(--term-green); color: #000; }
 
-        footer { text-align: center; padding: 40px; color: #484f58; border-top: 1px solid #30363d; }
+        /* Call to Action Button */
+        .cta-button {
+            display: inline-block;
+            background: var(--term-green);
+            color: #000;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            text-shadow: none;
+            margin-top: 15px;
+        }
+        .cta-button:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 15px #fff;
+        }
+
+        /* Hide content initially for boot sequence */
+        #main-content { display: none; }
+        #boot-sequence { white-space: pre-wrap; margin-bottom: 20px; }
+
+        .ascii-art { font-size: 0.8rem; line-height: 1; white-space: pre; margin-bottom: 20px; }
+
+        /* Typing Effect Cursor */
+        .typing-cursor-inline {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background-color: var(--term-green);
+            vertical-align: bottom;
+            animation: blink 1s step-end infinite;
+            margin-left: 4px;
+        }
+
+        /* Custom Slide & Fade Animations */
+        .slide-hidden { opacity: 0; }
+        .slide-up { transform: translateY(30px); }
+        .slide-right { transform: translateX(-30px); }
+        .slide-down { transform: translateY(-30px); }
+        .zoom-in { transform: scale(0.9); }
+
+        /* Apply smooth easing */
+        .slide-up, .slide-right, .slide-down, .zoom-in {
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        /* When visible, elements slide into place and appear */
+        .is-visible.slide-up, .is-visible.slide-right, .is-visible.slide-down, .is-visible.zoom-in {
+            opacity: 1 !important;
+            transform: translate(0) scale(1) !important;
+        }
     </style>
 </head>
 <body>
+    <div class="scanlines"></div>
 
-    <div class="hero">
-        <h1 data-aos="zoom-in">Computational Engineer</h1>
-        <p data-aos="fade-up" data-aos-delay="200">MSc. Student at Bergische Universität Wuppertal specializing in CFD, Parallel Computing & C++.</p>
-        <div data-aos="fade-up" data-aos-delay="400">
-            <a href="#about" style="color: var(--primary); text-decoration: none; font-size: 2rem;"><i class="fas fa-chevron-down"></i></a>
+    <div class="container">
+        <div id="boot-sequence" class="cursor"></div>
+
+        <div id="main-content">
+            <div class="ascii-art" data-aos="fade-down">
+ _________                 _             _ 
+ |__   __|                (_)           | |
+    | | ___ _ __ _ __ ___  _ _ __   __ _| |
+    | |/ _ \ '__| '_ ` _ \| | '_ \ / _` | |
+    | |  __/ |  | | | | | | | | | | (_| | |
+    |_|\___|_|  |_| |_| |_|_|_| |_|\__,_|_|
+            </div>
+
+            <h1 data-aos="fade-right">>_ PERSONNEL_DOSSIER: [YOUR NAME]</h1>
+            
+            <div class="section-box" data-aos="fade-up">
+                <p><span class="data-label">STATUS:</span> <span style="color: #fff">AVAILABLE FOR DEPLOYMENT / PARTNERSHIP</span></p>
+                <p><span class="data-label">DESIGNATION:</span> Computational Engineer / CFD Specialist</p>
+                <p><span class="data-label">LOCATION:</span> Wuppertal, Germany / Global Remote</p>
+                <p><span class="data-label">CLEARANCE:</span> MSc. Computer Simulation in Science</p>
+            </div>
+
+            <!-- EXECUTIVE BIO -->
+            <h2 data-aos="fade-right">>_ EXEC_BIO.EXE</h2>
+            <p data-aos="fade-up">Initiating executive summary... Subject possesses a formidable background in Mechanical Engineering, currently advancing expertise in Computational Fluid Dynamics (CFD). Core directives include software development, parallel computing (MPI/OpenMP), and highly-optimized scientific simulations using C++ and Python.</p>
+            <p data-aos="fade-up">Goal: Seeking challenging employment or partnership to deploy digital twin technologies and advanced simulation models.</p>
+
+            <!-- EDUCATION LOGS -->
+            <h2 data-aos="fade-right">>_ HIGHER_EDUCATION_LOGS</h2>
+            <div class="section-box" data-aos="fade-up">
+                <h3>[ MASTER OF SCIENCE: Computer Simulation in Science ]</h3>
+                <p><strong>LOCATION:</strong> Bergische Universität Wuppertal (10/2022 – Current)</p>
+                <p><strong>DIRECTIVES:</strong> Specialization in Computational Fluid Dynamics (CFD). Significant emphasis on software development, parallel computing (MPI and OpenMP), and programming for scientific simulations.</p>
+                <p><strong>TECH_STACK:</strong> C++, Python, MATLAB, Numerical Methods.</p>
+            </div>
+            
+            <div class="section-box" data-aos="fade-up">
+                <h3>[ BACHELOR OF ENGINEERING: Mechanical Engineering ]</h3>
+                <p><strong>LOCATION:</strong> R.M.K. Engineering College, India (2018 – 2022)</p>
+                <p><strong>PERFORMANCE_METRIC:</strong> 8.82 / 10 CGPA</p>
+                <p><strong>DIRECTIVES:</strong> Comprehensive training in thermal, fluid, and structural analysis.</p>
+            </div>
+
+            <!-- PROFESSIONAL EXP -->
+            <h2 data-aos="fade-right">>_ MISSION_HISTORY (EXPERIENCE)</h2>
+            <div class="section-box" data-aos="fade-up">
+                <h3>[ AERODYNAMICS ENGINEER ] @ Valorous Lineup (Racing Team)</h3>
+                <p><strong>TIMEFRAME:</strong> 08/2019 – 08/2020</p>
+                <p><strong>ACTION:</strong> Developed aerodynamic packages (spoilers, winglets) for Formula Green 2020.</p>
+                <p><strong>SYSTEMS:</strong> SolidWorks, Creo Parametric, ANSYS Fluent.</p>
+            </div>
+            <div class="section-box" data-aos="fade-up">
+                <h3>[ INTERNSHIP: DIGITAL TWIN ] @ Crion Technologies</h3>
+                <p><strong>TIMEFRAME:</strong> 08/2021 – 09/2021</p>
+                <p><strong>ACTION:</strong> Pipeline and boiler design for the oil/energy sector focusing on digital twinning.</p>
+                <p><strong>SYSTEMS:</strong> CATIA, Unity.</p>
+            </div>
+
+            <!-- PROJECTS -->
+            <h2 data-aos="fade-right">>_ DECLASSIFIED_PROJECTS</h2>
+            <p data-aos="fade-up"><strong>[1] Alumina Nano-Particle Composites (02/2022 - 05/2022):</strong> Structural and vibration analysis + manufacturing using ANSYS Mechanical APDL & CATIA.</p>
+            <p data-aos="fade-up"><strong>[2] Improvised Tesla Turbine (02/2021 - 05/2021):</strong> CAD and CFD analysis of a turbine using CATIA and ANSYS Fluent.</p>
+
+            <!-- SKILLS -->
+            <h2 data-aos="fade-right">>_ SYSTEM_CAPABILITIES</h2>
+            <p data-aos="fade-up"><span class="data-label">LANGUAGES:</span> C++, Python, MPI, OpenMP, MATLAB, Bash Scripting</p>
+            <p data-aos="fade-up"><span class="data-label">ENGINEERING:</span> CATIA V5, SolidWorks, ANSYS, OpenFOAM</p>
+            
+            <!-- SOCIAL PROOF / TESTIMONIALS (Requirement 4) -->
+            <h2 data-aos="fade-right">>_ COMMENDATIONS & SOCIAL_PROOF</h2>
+            <div class="section-box" style="border-color: #555; color: #aaa;" data-aos="fade-up">
+                <p>"[Your Name] consistently delivered highly optimized simulation parameters during the Formula Green aerodynamic development." <br><em>-- [Placeholder Name], Lead Engineer</em></p>
+                <p>COMMUNITY REP: Active GitHub Contributor | 500+ Connections on LinkedIn Network.</p>
+            </div>
+
+            <!-- CONTACT & CONVERSION OPTIMIZATION (Requirement 3, 7, 8) -->
+            <h2 data-aos="fade-right">>_ INITIATE_COMMS (CONTACT / CTA)</h2>
+            <p data-aos="fade-up">System ready to receive partnership inquiries and employment deployment requests.</p>
+            <p data-aos="fade-up">
+                <a href="mailto:your.email@example.com">[ TRANSMIT EMAIL ]</a> | 
+                <a href="https://linkedin.com/in/yourprofile">[ ESTABLISH LINKEDIN UPLINK ]</a> | 
+                <a href="https://github.com/yourusername">[ ACCESS GITHUB REPOSITORY ]</a>
+            </p>
+            
+            <div style="text-align: center; margin: 40px 0;" data-aos="zoom-in">
+                <a href="mailto:your.email@example.com" class="cta-button">> INITIATE EMPLOYMENT PROTOCOL <</a>
+            </div>
+
+            <p style="text-align: center; font-size: 0.8rem; margin-top: 50px;" data-aos="fade-up">
+                EOF. SYSTEM IDLE.
+            </p>
         </div>
     </div>
 
-    <div class="container">
-        
-        <section id="education" data-aos="fade-right">
-            <h2 class="section-title">Higher Education</h2>
-            <div class="timeline-item">
-                <span class="date">10/2022 – Current | Wuppertal, Germany</span>
-                <h3>Master of Science: Computer Simulation in Science</h3>
-                <p><strong>Bergische Universität Wuppertal</strong></p>
-                <ul>
-                    <li>Specialization in Computational Fluid Dynamics & Parallel Computing (MPI/OpenMP).</li>
-                    <li>Advanced Numerical Methods and programming in C++, Python, and MATLAB.</li>
-                </ul>
-            </div>
-            <div class="timeline-item">
-                <span class="date">2018 – 2022 | India</span>
-                <h3>Bachelor of Engineering: Mechanical Engineering</h3>
-                <p><strong>R.M.K. Engineering College | CGPA: 8.82/10</strong></p>
-                <ul>
-                    <li>Thermal, fluid, and structural analysis training.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="projects" data-aos="fade-up">
-            <h2 class="section-title">Study Projects</h2>
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <h3>Dynamic Characteristics of Nano-Composites</h3>
-                        <p>Structural and vibration analysis using ANSYS Mechanical APDL & CATIA.</p>
-                        <span class="skill-tag">Final Year Project</span>
-                    </div>
-                    <div class="swiper-slide">
-                        <h3>Improvised Tesla Turbine</h3>
-                        <p>Conducted CAD and CFD analysis using CATIA and ANSYS Fluent.</p>
-                        <span class="skill-tag">Mini Project</span>
-                    </div>
-                </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-        </section>
-
-        <section id="experience" data-aos="fade-left">
-            <h2 class="section-title">Professional Background</h2>
-            <div class="timeline-item">
-                <h3>Aerodynamics Engineer</h3>
-                <p><strong>Valorous Lineup (Racing Team)</strong></p>
-                <p>Developed spoilers and winglets using SolidWorks and ANSYS Fluent for Formula Green 2020.</p>
-            </div>
-            <div class="timeline-item">
-                <h3>Digital Twin Internship</h3>
-                <p><strong>Crion Technologies</strong></p>
-                <p>Pipeline and boiler design using CATIA and Unity for digital twinning.</p>
-            </div>
-        </section>
-
-        <section id="skills" data-aos="fade-up">
-            <h2 class="section-title">Digital Competencies</h2>
-            <div class="skills-grid">
-                <div class="skill-tag">C++ / Python</div>
-                <div class="skill-tag">MPI / OpenMP</div>
-                <div class="skill-tag">ANSYS / OpenFOAM</div>
-                <div class="skill-tag">MATLAB / Bash</div>
-                <div class="skill-tag">CATIA / SolidWorks</div>
-            </div>
-        </section>
-
-    </div>
-
-    <footer>
-        <p>&copy; 2026 | Built with GitHub Pages & Passion for Physics</p>
-    </footer>
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Animation Scripts -->
     <script>
-        AOS.init({ duration: 1000, once: true });
+        // Boot Sequence Animation
+        const bootText = [
+            "INITIALIZING BIOS...",
+            "MEMORY CHECK: 640K OK",
+            "LOADING KERNEL MODULES... DONE",
+            "MOUNTING ENCRYPTED FILESYSTEM...",
+            "ESTABLISHING SECURE CONNECTION...",
+            "AUTHENTICATION REQUIRED...",
+            "BYPASSING SECURITY... SUCCESS",
+            "ACCESSING CLASSIFIED DOSSIER...",
+            " "
+        ];
 
-        var swiper = new Swiper(".mySwiper", {
-            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-            pagination: { el: ".swiper-pagination", clickable: true },
-            loop: true,
-            autoplay: { delay: 3000 }
-        });
+        let lineIndex = 0;
+        const bootContainer = document.getElementById('boot-sequence');
+        const mainContent = document.getElementById('main-content');
+
+        function printLine() {
+            if (lineIndex < bootText.length) {
+                bootContainer.innerHTML += bootText[lineIndex] + "<br>";
+                lineIndex++;
+                setTimeout(printLine, Math.random() * 300 + 100); // Random typing speed
+            } else {
+                setTimeout(() => {
+                    bootContainer.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    
+                    initTerminalScroll();
+                }, 800);
+            }
+        }
+
+        function initTerminalScroll() {
+            // Hijack all elements marked for sliding animation
+            const elements = document.querySelectorAll('[data-aos]');
+            
+            // Prepare elements for typing & sliding
+            elements.forEach(el => {
+                // FIX: Lock the height before clearing the text.
+                // This stops the page from collapsing to 0 height and triggering everything at once!
+                const rect = el.getBoundingClientRect();
+                el.style.minHeight = rect.height + 'px';
+
+                el.setAttribute('data-raw-html', el.innerHTML);
+                el.innerHTML = ''; // Clear contents for typing
+                
+                // Map the aos direction to our custom slide classes
+                const aosType = el.getAttribute('data-aos');
+                if(aosType === 'fade-up') el.classList.add('slide-hidden', 'slide-up');
+                else if(aosType === 'fade-right') el.classList.add('slide-hidden', 'slide-right');
+                else if(aosType === 'fade-down') el.classList.add('slide-hidden', 'slide-down');
+                else if(aosType === 'zoom-in') el.classList.add('slide-hidden', 'zoom-in');
+                else el.classList.add('slide-hidden');
+                
+                el.removeAttribute('data-aos'); // Clean up old tags
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        observer.unobserve(el); // Animate only once
+                        
+                        // Add class to trigger CSS slide-in
+                        el.classList.add('is-visible');
+                        
+                        // Start typing animation simultaneously
+                        typeHTML(el, 8); // Speed: ~8ms per character
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.1,
+                rootMargin: "0px 0px -20px 0px"
+            });
+
+            elements.forEach(el => observer.observe(el));
+        }
+
+        function typeHTML(element, speed) {
+            const html = element.getAttribute('data-raw-html');
+            let i = 0;
+            let isTag = false;
+            let text = '';
+            
+            // Create a cursor element
+            const cursor = document.createElement('span');
+            cursor.className = 'typing-cursor-inline';
+            
+            function type() {
+                if (i < html.length) {
+                    if (html.charAt(i) === '<') isTag = true;
+                    text += html.charAt(i);
+                    i++;
+                    
+                    // Fast-forward through HTML tags so they render instantly, preventing broken formatting
+                    if (isTag) {
+                        while (i < html.length && html.charAt(i-1) !== '>') {
+                            text += html.charAt(i);
+                            i++;
+                        }
+                        isTag = false;
+                    }
+                    
+                    element.innerHTML = text;
+                    element.appendChild(cursor);
+                    
+                    // Randomize speed slightly for authentic terminal processing feel
+                    const jitter = Math.random() * 15;
+                    setTimeout(type, speed + jitter);
+                } else {
+                    element.innerHTML = text; // Remove cursor when done
+                    element.style.minHeight = ''; // Restore normal dynamic height
+                }
+            }
+            type();
+        }
+
+        window.onload = printLine;
     </script>
 </body>
 </html>
