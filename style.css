@@ -17,11 +17,10 @@ body {
     text-shadow: var(--term-glow);
 }
 
-/* CRT Scanline Effect (Toned down ~20-30%) */
+/* CRT Scanline Effect (Toned down 20%) */
 .scanlines {
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
-    /* Reduced the black alpha from 0.25 to 0.15, and the RGB bleeding alphas */
     background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), 
                 linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.04));
     background-size: 100% 4px, 3px 100%;
@@ -31,7 +30,6 @@ body {
 }
 
 @keyframes crt-flicker {
-    /* Softened the flicker to be less aggressive */
     0% { opacity: 0.98; }
     50% { opacity: 0.92; }
     100% { opacity: 0.98; }
@@ -55,6 +53,58 @@ body {
 .terminal-nav a { 
     margin-right: 15px; 
     border-bottom: none;
+}
+
+/* --- PROFILE GLITCH MODULE --- */
+.profile-glitch-container {
+    position: relative;
+    width: 250px;       
+    height: 250px;
+    margin-bottom: 25px;
+    border: 2px solid var(--term-green);
+    overflow: hidden;   
+    background: #000;
+}
+
+.profile-real {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(100%) contrast(120%); 
+}
+
+.profile-ascii {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    color: var(--term-green);
+    font-family: monospace;
+    font-size: 10px;    
+    line-height: 12px;
+    letter-spacing: 0.5px;
+    white-space: pre;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    opacity: 0;
+    animation: asciiGlitch 7s infinite;
+}
+
+@keyframes asciiGlitch {
+    0%, 93% { opacity: 0; transform: translate(0, 0); }
+    94% { opacity: 1; transform: translate(-3px, 3px); }
+    95% { opacity: 0; transform: translate(0, 0); }
+    96% { opacity: 1; transform: translate(3px, -3px); background-color: var(--term-green); color: #000; }
+    97% { opacity: 0; transform: translate(0, 0); }
+    98% { opacity: 0.8; transform: translate(-1px, -1px); }
+    99% { opacity: 1; transform: translate(1px, 1px); }
+    100% { opacity: 0; transform: translate(0, 0); }
 }
 
 /* Glitch and Blinking Cursor */
