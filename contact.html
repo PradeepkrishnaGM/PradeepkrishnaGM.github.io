@@ -2,29 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TERMINAL // Contact</title>
+    <title>TERMINAL // Uplink</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="scanlines"></div>
-    <div class="container">
-        <div id="main-content" style="display:block;">
-            <p class="command-line">ls -la /sys/home/guest/</p>
-            <table class="dir-table" data-aos>
-                <tr><td>drwxr-xr-x</td><td><a href="index.html" class="dir-link">dossier_root/</a></td></tr>
-                <tr><td>drwxr-xr-x</td><td><a href="projects.html" class="dir-link">missions_and_projects/</a></td></tr>
-                <tr><td>drwxr-xr-x</td><td><a href="contact.html" class="dir-link">comms_uplink/</a></td></tr>
-            </table>
 
-            <h1 data-aos>>_ INITIATE_COMMS</h1>
-            <div class="section-box" data-aos>
-                <p>System ready for transmission.</p>
-                <p><a href="mailto:your@email.com">[ TRANSMIT EMAIL ]</a></p>
-                <p><a href="https://linkedin.com/in/yourprofile">[ LINKEDIN UPLINK ]</a></p>
+    <div id="main-content" style="display:block;">
+        <div class="grid-container vt323">
+            
+            <div class="area-header"><h1>TERMINAL</h1></div>
+            
+            <div class="area-profile section-box" style="border:none; text-align:center;">
+                <p>[SYSTEM IDLE]</p>
             </div>
-        </div>
-    </div>
-    <script src="script.js"></script>
+
+            <div class="area-links section-box">
+                <p><a href="mailto:your@email.com">[ Email ]</a></p>
+                <p><a href="https://linkedin.com/in/yourprofile">[ LinkedIn ]</a></p>
+                <p><a href="https://github.com/yourusername">[ GitHub ]</a></p>
+            </div>
+
+            <div class="area-dossier section-box">
+                <h2>>_ PERSONNEL_DOSSIER</h2>
+                <p><span class="data-label">STATUS:</span> AVAILABLE</p>
+                <p><span class="data-label">DESIGNATION:</span> Computational Engineer</p>
+                <p><span class="data-label">LOCATION:</span> Wuppertal, Germany</p>
+            </div>
+
+            <div class="area-about section-box">
+                <h2>>_ INITIATE_COMMS</h2>
+                <p>System ready for transmission. Seek challenging deployment requests in advanced simulation, CFD engineering, or partner development protocols.</p>
+                <p style="text-align: center; margin-top: 30px;">
+                    <a href="mailto:your.email@example.com" class="cta-button" style="display: inline-block; font-size: 2rem; padding: 10px 30px;">> SEEK DEPLOYMENT <</a>
+                </p>
+            </div>
+
+            <div class="area-nav section-box">
+                <p class="command-line">ls -la /sys/home/</p>
+                <table class="dir-table">
+                    <tr><td><a href="index.html" class="dir-link">[Dossier]</a></td></tr>
+                    <tr><td><a href="projects.html" class="dir-link">[Missions]</a></td></tr>
+                    <tr><td><a href="contact.html" class="dir-link" style="color:#fff;">[Uplink]</a></td></tr>
+                </table>
+            </div>
+
+        </div> </div> <script src="script.js"></script>
 </body>
 </html>
