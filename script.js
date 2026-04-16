@@ -1,6 +1,6 @@
 const bootText = [
     "INITIALIZING KERNEL...",
-    "LOADING MEMORY MODULES... OK",
+    "LOADING MEMORY MAP... OK",
     "ESTABLISHING SECURE UPLINK...",
     "DECRYPTING PERSONNEL DATA...",
     "READY."
@@ -15,61 +15,42 @@ function printLine() {
     if (lineIndex < bootText.length) {
         bootContainer.innerHTML += bootText[lineIndex] + "<br>";
         lineIndex++;
-        setTimeout(printLine, Math.random() * 200 + 100);
+        setTimeout(printLine, Math.random() * 200 + 50); // Fast but feels terminal-like
     } else {
         setTimeout(() => {
             bootContainer.style.display = 'none';
             mainContent.style.display = 'block';
-            initAnimations();
-        }, 600);
+            revealGrid();
+        }, 500);
     }
 }
 
-function initAnimations() {
-    const elements = document.querySelectorAll('[data-aos]');
-    elements.forEach(el => {
-        el.setAttribute('data-raw', el.innerHTML);
-        el.innerHTML = '';
-        el.classList.add('slide-hidden', 'slide-up');
+// Reveal each grid section with a slide-up effect
+function revealGrid() {
+    const elements = document.querySelectorAll('.section-box');
+    elements.forEach((el, index) => {
+        setTimeout(() => {
+            el.classList.add('is-visible');
+            el.style.transform = 'translateY(0)'; // Force reset in case of CSS conflict
+        }, index * 100); // 100ms stagger between sections
     });
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                typeText(entry.target);
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    elements.forEach(el => observer.observe(el));
-}
-
-function typeText(el) {
-    const raw = el.getAttribute('data-raw');
-    let i = 0;
-    function typing() {
-        if (i < raw.length) {
-            if (raw.charAt(i) === '<') {
-                i = raw.indexOf('>', i) + 1;
-            } else {
-                i++;
-            }
-            el.innerHTML = raw.substring(0, i);
-            setTimeout(typing, 5);
-        }
-    }
-    typing();
 }
 
 window.onload = () => {
-    if (!sessionStorage.getItem('booted')) {
+    const hasBooted = sessionStorage.getItem('booted');
+    const bootContainer = document.getElementById('boot-sequence');
+    const mainContent = document.getElementById('main-content');
+
+    if (bootContainer && !hasBooted) {
+        // First visit: play boot sequence
         printLine();
         sessionStorage.setItem('booted', 'true');
     } else {
-        document.getElementById('boot-sequence').style.display = 'none';
-        document.getElementById('main-content').style.display = 'block';
-        initAnimations();
+        // Skip boot sequence
+        if (bootContainer) bootContainer.style.display = 'none';
+        if (mainContent) {
+            mainContent.style.display = 'block';
+            revealGrid();
+        }
     }
 };
