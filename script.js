@@ -1,14 +1,9 @@
-// Boot Sequence Animation
 const bootText = [
-    "INITIALIZING BIOS...",
-    "MEMORY CHECK: 640K OK",
-    "LOADING KERNEL MODULES... DONE",
-    "MOUNTING ENCRYPTED FILESYSTEM...",
-    "ESTABLISHING SECURE CONNECTION...",
-    "AUTHENTICATION REQUIRED...",
-    "BYPASSING SECURITY... SUCCESS",
-    "ACCESSING CLASSIFIED DOSSIER...",
-    " "
+    "INITIALIZING KERNEL...",
+    "LOADING MEMORY MODULES... OK",
+    "ESTABLISHING SECURE UPLINK...",
+    "DECRYPTING PERSONNEL DATA...",
+    "READY."
 ];
 
 let lineIndex = 0;
@@ -20,104 +15,61 @@ function printLine() {
     if (lineIndex < bootText.length) {
         bootContainer.innerHTML += bootText[lineIndex] + "<br>";
         lineIndex++;
-        setTimeout(printLine, Math.random() * 150 + 50); 
+        setTimeout(printLine, Math.random() * 200 + 100);
     } else {
         setTimeout(() => {
             bootContainer.style.display = 'none';
             mainContent.style.display = 'block';
-            initTerminalScroll();
-        }, 500);
+            initAnimations();
+        }, 600);
     }
 }
 
-function initTerminalScroll() {
+function initAnimations() {
     const elements = document.querySelectorAll('[data-aos]');
-    
     elements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        el.style.minHeight = rect.height + 'px';
-
-        el.setAttribute('data-raw-html', el.innerHTML);
-        el.innerHTML = ''; 
-        
-        const aosType = el.getAttribute('data-aos');
-        if(aosType === 'fade-up') el.classList.add('slide-hidden', 'slide-up');
-        else if(aosType === 'fade-right') el.classList.add('slide-hidden', 'slide-right');
-        else if(aosType === 'fade-down') el.classList.add('slide-hidden', 'slide-down');
-        else if(aosType === 'zoom-in') el.classList.add('slide-hidden', 'zoom-in');
-        else el.classList.add('slide-hidden');
-        
-        el.removeAttribute('data-aos'); 
+        el.setAttribute('data-raw', el.innerHTML);
+        el.innerHTML = '';
+        el.classList.add('slide-hidden', 'slide-up');
     });
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const el = entry.target;
-                observer.unobserve(el); 
-                el.classList.add('is-visible');
-                typeHTML(el, 5); // Speed: ~5ms per character
+                entry.target.classList.add('is-visible');
+                typeText(entry.target);
+                observer.unobserve(entry.target);
             }
         });
-    }, {
-        root: null,
-        threshold: 0.1,
-        rootMargin: "0px 0px -20px 0px"
-    });
+    }, { threshold: 0.1 });
 
     elements.forEach(el => observer.observe(el));
 }
 
-function typeHTML(element, speed) {
-    const html = element.getAttribute('data-raw-html');
+function typeText(el) {
+    const raw = el.getAttribute('data-raw');
     let i = 0;
-    let isTag = false;
-    let text = '';
-    
-    const cursor = document.createElement('span');
-    cursor.className = 'typing-cursor-inline';
-    
-    function type() {
-        if (i < html.length) {
-            if (html.charAt(i) === '<') isTag = true;
-            text += html.charAt(i);
-            i++;
-            
-            if (isTag) {
-                while (i < html.length && html.charAt(i-1) !== '>') {
-                    text += html.charAt(i);
-                    i++;
-                }
-                isTag = false;
+    function typing() {
+        if (i < raw.length) {
+            if (raw.charAt(i) === '<') {
+                i = raw.indexOf('>', i) + 1;
+            } else {
+                i++;
             }
-            
-            element.innerHTML = text;
-            element.appendChild(cursor);
-            
-            const jitter = Math.random() * 10;
-            setTimeout(type, speed + jitter);
-        } else {
-            element.innerHTML = text;
-            element.style.minHeight = ''; 
+            el.innerHTML = raw.substring(0, i);
+            setTimeout(typing, 5);
         }
     }
-    type();
+    typing();
 }
 
-// Session Storage Logic
-window.onload = function() {
-    const hasBooted = sessionStorage.getItem('systemBooted');
-    const bootContainer = document.getElementById('boot-sequence');
-    const mainContent = document.getElementById('main-content');
-
-    if (bootContainer && !hasBooted) {
+window.onload = () => {
+    if (!sessionStorage.getItem('booted')) {
         printLine();
-        sessionStorage.setItem('systemBooted', 'true'); 
+        sessionStorage.setItem('booted', 'true');
     } else {
-        if (bootContainer) bootContainer.style.display = 'none';
-        if (mainContent) {
-            mainContent.style.display = 'block';
-            initTerminalScroll(); 
-        }
+        document.getElementById('boot-sequence').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+        initAnimations();
     }
 };
