@@ -2,22 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TERMINAL // [Your Name] - Computational Engineer</title>
-    <meta name="description" content="Official portfolio and executive bio of [Your Name], MSc. Computer Simulation in Science. Specializing in CFD, C++, and Parallel Computing. Available for employment.">
-    <meta name="keywords" content="CFD, Computational Fluid Dynamics, C++, MPI, OpenMP, Mechanical Engineering, Simulation, Portfolio">
-    <meta name="author" content="[Your Name]">
+    <title>TERMINAL // Dossier</title>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="scanlines"></div>
-
     <div class="container">
-        <div id="boot-sequence" class="cursor"></div>
-
+        <div id="boot-sequence"></div>
         <div id="main-content">
-            <div class="ascii-art" data-aos="fade-down">
+            <div class="ascii-art" data-aos>
  _________                 _             _ 
 |__   __|                 (_)           | |
    | | ___ _ __ _ __ ___   _ _ __   __ _| |
@@ -26,18 +20,19 @@
    |_|\___|_|  |_| |_| |_||_|_| |_|\__,_|_|
             </div>
 
-            <nav class="terminal-nav" data-aos="fade-right">
-                <span class="data-label">DIR_ACCESS:</span>
-                <a href="index.html">> ./dossier.sh</a> |
-                <a href="projects.html">> ./experience.sh</a> |
-                <a href="contact.html">> ./comms.sh</a>
-            </nav>
+            <p class="command-line">ls -la /sys/home/guest/</p>
+            <table class="dir-table" data-aos>
+                <tr><td>drwxr-xr-x</td><td><a href="index.html" class="dir-link">dossier_root/</a></td></tr>
+                <tr><td>drwxr-xr-x</td><td><a href="projects.html" class="dir-link">missions_and_projects/</a></td></tr>
+                <tr><td>drwxr-xr-x</td><td><a href="contact.html" class="dir-link">comms_uplink/</a></td></tr>
+            </table>
 
-            <h1 data-aos="fade-right">>_ PERSONNEL_DOSSIER: [YOUR NAME]</h1>
+            <h1 data-aos>>_ PERSONNEL_DOSSIER: [YOUR NAME]</h1>
 
-            <div class="profile-glitch-container" data-aos="fade-right">
-                <img src="Profile.png" alt="Profile Designation" class="profile-real">
-                <div class="profile-ascii">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            <div class="profile-glitch-container" data-aos>
+                <img src="Profile.png" class="profile-real" alt="Profile">
+                <div class="profile-ascii">
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXKK00KKXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXK0kkxxxxkk0KXXXXXXXXXXXXXX
@@ -58,36 +53,12 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
             </div>
-            
-            <div class="section-box" data-aos="fade-up">
-                <p><span class="data-label">STATUS:</span> <span style="color: #fff">AVAILABLE FOR DEPLOYMENT / PARTNERSHIP</span></p>
-                <p><span class="data-label">DESIGNATION:</span> Computational Engineer / CFD Specialist</p>
-                <p><span class="data-label">LOCATION:</span> Wuppertal, Germany / Global Remote</p>
-                <p><span class="data-label">CLEARANCE:</span> MSc. Computer Simulation in Science</p>
-            </div>
 
-            <h2 data-aos="fade-right">>_ EXEC_BIO.EXE</h2>
-            <p data-aos="fade-up">Initiating executive summary... Subject possesses a formidable background in Mechanical Engineering, currently advancing expertise in Computational Fluid Dynamics (CFD). Core directives include software development, parallel computing (MPI/OpenMP), and highly-optimized scientific simulations using C++ and Python.</p>
-            <p data-aos="fade-up">Goal: Seeking challenging employment or partnership to deploy digital twin technologies and advanced simulation models.</p>
-
-            <h2 data-aos="fade-right">>_ HIGHER_EDUCATION_LOGS</h2>
-            <div class="section-box" data-aos="fade-up">
-                <h3>[ MASTER OF SCIENCE: Computer Simulation in Science ]</h3>
-                <p><strong>LOCATION:</strong> Bergische Universität Wuppertal (10/2022 – Current)</p>
-                <p><strong>DIRECTIVES:</strong> Specialization in Computational Fluid Dynamics (CFD). Significant emphasis on software development, parallel computing (MPI and OpenMP), and programming for scientific simulations.</p>
-                <p><strong>TECH_STACK:</strong> C++, Python, MATLAB, Numerical Methods.</p>
+            <div class="section-box" data-aos>
+                <p><span class="data-label">STATUS:</span> AVAILABLE</p>
+                <p><span class="data-label">DESIGNATION:</span> Computational Engineer</p>
+                <p><span class="data-label">LOCATION:</span> Wuppertal, Germany</p>
             </div>
-            
-            <div class="section-box" data-aos="fade-up">
-                <h3>[ BACHELOR OF ENGINEERING: Mechanical Engineering ]</h3>
-                <p><strong>LOCATION:</strong> R.M.K. Engineering College, India (2018 – 2022)</p>
-                <p><strong>PERFORMANCE_METRIC:</strong> 8.82 / 10 CGPA</p>
-                <p><strong>DIRECTIVES:</strong> Comprehensive training in thermal, fluid, and structural analysis.</p>
-            </div>
-            
-            <p style="text-align: center; font-size: 0.8rem; margin-top: 50px;" data-aos="fade-up">
-                EOF. NAVIGATE DIR FOR MORE DATA.
-            </p>
         </div>
     </div>
     <script src="script.js"></script>
