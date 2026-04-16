@@ -2,37 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TERMINAL // Dossier</title>
+    <title>TERMINAL // [Your Name]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="scanlines"></div>
-    <div class="container">
-        <div id="boot-sequence"></div>
-        <div id="main-content">
-            <div class="ascii-art" data-aos>
- _________                 _             _ 
-|__   __|                 (_)           | |
-   | | ___ _ __ _ __ ___   _ _ __   __ _| |
-   | |/ _ \ '__| '_ ` _ \ | | '_ \ / _` | |
-   | |  __/ |  | | | | | || | | | | (_| | |
-   |_|\___|_|  |_| |_| |_||_|_| |_|\__,_|_|
+
+    <div id="boot-sequence" class="vt323"></div>
+
+    <div id="main-content">
+        <div class="grid-container vt323">
+            
+            <div class="area-header">
+                <h1>TERMINAL</h1>
             </div>
 
-            <p class="command-line">ls -la /sys/home/guest/</p>
-            <table class="dir-table" data-aos>
-                <tr><td>drwxr-xr-x</td><td><a href="index.html" class="dir-link">dossier_root/</a></td></tr>
-                <tr><td>drwxr-xr-x</td><td><a href="projects.html" class="dir-link">missions_and_projects/</a></td></tr>
-                <tr><td>drwxr-xr-x</td><td><a href="contact.html" class="dir-link">comms_uplink/</a></td></tr>
-            </table>
-
-            <h1 data-aos>>_ PERSONNEL_DOSSIER: [YOUR NAME]</h1>
-
-            <div class="profile-glitch-container" data-aos>
-                <img src="Profile.png" class="profile-real" alt="Profile">
-                <div class="profile-ascii">
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            <div class="area-profile section-box" style="border:none;">
+                <div class="profile-glitch-container">
+                    <img src="Profile.png" class="profile-real" alt="Profile Designation">
+                    <div class="profile-ascii">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXKK00KKXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXK0kkxxxxkk0KXXXXXXXXXXXXXX
@@ -52,15 +42,39 @@ XXXXXXXXXXXXXK00OOOOOOOO00KXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+                </div>
             </div>
 
-            <div class="section-box" data-aos>
+            <div class="area-links section-box">
+                <p><a href="mailto:your.email@example.com">[ TRANSMIT EMAIL ]</a></p>
+                <p><a href="https://github.com/yourusername">[ ACCESS GITHUB ]</a></p>
+                <p><a href="https://linkedin.com/in/yourprofile">[ ESTABLISH LINKEDIN ]</a></p>
+            </div>
+
+            <div class="area-dossier section-box">
+                <h2>>_ PERSONNEL_DOSSIER</h2>
                 <p><span class="data-label">STATUS:</span> AVAILABLE</p>
                 <p><span class="data-label">DESIGNATION:</span> Computational Engineer</p>
                 <p><span class="data-label">LOCATION:</span> Wuppertal, Germany</p>
+                <p><span class="data-label">CLEARANCE:</span> MSc. Computer Simulation</p>
+                <p><span class="data-label">TECH_STACK:</span> C++, Python, MPI, OpenFOAM</p>
             </div>
-        </div>
-    </div>
-    <script src="script.js"></script>
+
+            <div class="area-about section-box">
+                <h2>>_ EXEC_BIO.EXE</h2>
+                <p>Initiating executive summary... Subject possesses a background in Mechanical Engineering, currently specializing in Computational Fluid Dynamics (CFD). Core directives include highly-optimized scientific simulations using C++ and parallel computing (MPI/OpenMP).</p>
+                <p>Goal: Deploying digital twin technologies and advanced simulation models to solve complex engineering challenges.</p>
+            </div>
+
+            <div class="area-nav section-box">
+                <p class="command-line">ls -la /sys/home/</p>
+                <table class="dir-table">
+                    <tr><td><a href="index.html" class="dir-link" style="color:#fff;">[Dossier]</a></td></tr>
+                    <tr><td><a href="projects.html" class="dir-link">[Missions]</a></td></tr>
+                    <tr><td><a href="contact.html" class="dir-link">[Uplink]</a></td></tr>
+                </table>
+            </div>
+
+        </div> </div> <script src="script.js"></script>
 </body>
 </html>
