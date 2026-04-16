@@ -3,36 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>TERMINAL // Projects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="scanlines"></div>
-    <div class="container">
-        <div id="main-content" style="display:block;">
-            <p class="command-line">ls -la /sys/home/guest/</p>
-            <table class="dir-table" data-aos>
-                <tr><td>drwxr-xr-x</td><td><a href="index.html" class="dir-link">dossier_root/</a></td></tr>
-                <tr><td>drwxr-xr-x</td><td><a href="projects.html" class="dir-link">missions_and_projects/</a></td></tr>
-                <tr><td>drwxr-xr-x</td><td><a href="contact.html" class="dir-link">comms_uplink/</a></td></tr>
-            </table>
 
-            <h1 data-aos>>_ DECLASSIFIED_PROJECTS</h1>
+    <div id="main-content" style="display:block;">
+        <div class="grid-container vt323">
+            
+            <div class="area-header"><h1>TERMINAL</h1></div>
+            
+            <div class="area-profile section-box" style="border:none; text-align:center;">
+                <p>[SYSTEM IDLE]</p>
+            </div>
 
-            <div class="section-box" data-aos>
-                <p class="command-line">cat ./projects/alumina_composites.md</p>
-                <div class="project-grid">
+            <div class="area-links section-box">
+                <p><a href="index.html">[ Dossier ]</a></p>
+                <p><a href="projects.html">[ Missions ]</a></p>
+                <p><a href="contact.html">[ Uplink ]</a></p>
+            </div>
+
+            <div class="area-dossier section-box">
+                <h2>>_ PERSONNEL_DOSSIER</h2>
+                <p><span class="data-label">STATUS:</span> AVAILABLE</p>
+                <p><span class="data-label">DESIGNATION:</span> Computational Engineer</p>
+                <p><span class="data-label">LOCATION:</span> Wuppertal, Germany</p>
+            </div>
+
+            <div class="area-about section-box">
+                <h2>>_ DECLASSIFIED_MISSIONS</h2>
+                
+                <div class="project-subgrid">
                     <img src="project1.jpg" class="project-thumbnail" alt="P1">
                     <div>
                         <h3>[1] Alumina Nano-Particle Composites</h3>
                         <p>Structural and vibration analysis using ANSYS Mechanical APDL.</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="section-box" data-aos>
-                <p class="command-line">cat ./projects/tesla_turbine.md</p>
-                <div class="project-grid">
+                <div class="project-subgrid">
                     <img src="project2.jpg" class="project-thumbnail" alt="P2">
                     <div>
                         <h3>[2] Improvised Tesla Turbine</h3>
@@ -40,8 +51,16 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <script src="script.js"></script>
+
+            <div class="area-nav section-box">
+                <p class="command-line">ls -la /sys/home/</p>
+                <table class="dir-table">
+                    <tr><td><a href="index.html" class="dir-link">[Dossier]</a></td></tr>
+                    <tr><td><a href="projects.html" class="dir-link" style="color:#fff;">[Missions]</a></td></tr>
+                    <tr><td><a href="contact.html" class="dir-link">[Uplink]</a></td></tr>
+                </table>
+            </div>
+
+        </div> </div> <script src="script.js"></script>
 </body>
 </html>
